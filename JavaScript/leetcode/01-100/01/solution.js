@@ -18,5 +18,3 @@ const twoSum = function(nums, target) {
         return result;
     }, []);
 };
-
-twoSum([2,7,9], 9)
