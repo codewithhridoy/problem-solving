@@ -4,7 +4,26 @@
  * @return {number}
  */
 
+
+/**
+ * @param {number[]} happiness
+ * @param {number} k
+ * @return {number}
+ */
+
 const maximumHappinessSum = function (happiness, k) {
+  // Sort the happiness array in descending order
+  happiness.sort((a, b) => b - a);
+
+  // Use reduce to calculate the total happiness sum
+  return happiness.slice(0, k).reduce((totalHappiness, currentHappiness, index) => {
+    // Calculate the difference between current happiness and index
+    // Add the difference to the total happiness if positive, else add 0
+    return totalHappiness + Math.max(currentHappiness - index, 0);
+  }, 0);
+};
+
+const alternateMaximumHappinessSum = function (happiness, k) {
   // Sort the happiness array in descending order
   happiness.sort((a, b) => b - a);
 
