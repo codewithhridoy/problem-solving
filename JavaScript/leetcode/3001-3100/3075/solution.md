@@ -2,6 +2,48 @@
 
 # Intuition
 
+To maximize the sum of happiness, we aim to select the elements with the highest happiness values. By sorting the array in descending order, we can easily identify the top happiness values to select.
+
+# Approach
+
+1. Sort the happiness array in descending order.
+2. Use the slice method to extract the first k elements, representing the top k happiness values.
+3. Utilize the reduce method to calculate the total happiness sum while considering the indices of the selected elements.
+4. Within the reducer function, compute the difference between the current happiness value and its index. Add this difference to the total happiness if positive; otherwise, add 0.
+5. Return the total happiness sum as the result.
+
+# Complexity
+
+- Time complexity: Sorting the array takes O(nlogn) time, where n is the number of elements in the happiness array. The extraction of the first k elements takes O(k) time. The reduce operation performs the calculation in linear time relative to the number of selected elements, which is k. Therefore, the overall time complexity is O(nlogn+k).
+
+- Space complexity: The space complexity is O(k) due to the slicing operation, which creates a new array containing the first k elements of the sorted array. The reduce operation does not increase the space complexity significantly. Thus, the overall space complexity is O(k).
+
+# Code
+
+```
+/**
+ * @param {number[]} happiness
+ * @param {number} k
+ * @return {number}
+ */
+
+const maximumHappinessSum = function (happiness, k) {
+    // Sort the happiness array in descending order
+    happiness.sort((a, b) => b - a);
+
+    // Use reduce to calculate the total happiness sum
+    return happiness.slice(0, k).reduce((totalHappiness, currentHappiness, index) => {
+        // Calculate the difference between current happiness and index
+        // Add the difference to the total happiness if positive, else add 0
+        return totalHappiness + Math.max(currentHappiness - index, 0);
+    }, 0);
+};
+```
+
+// Alternate
+
+# Intuition
+
 To maximize the sum of happiness, we want to select the elements with the highest happiness values. Sorting the array in descending order allows us to easily select the first k elements with the highest happiness values.
 
 # Approach
